@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace curso_pragmatico_csharp
 {
@@ -32,6 +33,7 @@ namespace curso_pragmatico_csharp
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "curso_pragmatico_csharp", Version = "v1" });
             });
+            services.AddDbContext<ApplicationDbContext>(ParallelOptions => ParallelOptions.UseSqlite("Data Source=myapp.db"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
