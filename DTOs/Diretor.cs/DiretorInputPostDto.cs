@@ -1,3 +1,3 @@
-public class DiretorInputDto {
+public class DiretorInputPostDto {
     public string Nome { get; set; }
 }
