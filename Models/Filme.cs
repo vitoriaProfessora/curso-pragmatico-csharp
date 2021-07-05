@@ -4,7 +4,8 @@ public class Filme {
     public long DiretorId { get; set; }
     public Diretor Diretor { get; set; }
 
-    public Filme(string titulo) {
+    public Filme(string titulo, long diretorId) {
         Titulo = titulo;
+        DiretorId = diretorId;
     }
 }
