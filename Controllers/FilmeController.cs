@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,8 +15,12 @@ public class FilmeController : ControllerBase {
 
     // GET api/filmes
     [HttpGet]
-    public async Task<List<FilmeOutPutGetAllDTO>> Get() {
+    public async Task<ActionResult<List<FilmeOutPutGetAllDTO>>> Get() {
         var filmes = await _context.Filmes.ToListAsync();
+
+        if (!filmes.Any()) {
+            return NotFound("Não existe filmes cadastrados");
+        }
 
         var outputDTOList = new List<FilmeOutPutGetAllDTO>();
 
@@ -58,6 +63,10 @@ public class FilmeController : ControllerBase {
     [HttpPut("{id}")]
     public async Task<ActionResult<FilmeOutputPutDTO>> Put(long id, [FromBody] FilmeInputPutDTO inputDTO) {
         var filme = new Filme(inputDTO.Titulo, inputDTO.DiretorId);
+
+        if (inputDTO.DiretorId == 0) {
+            return NotFound("Id do diretor é inválido");
+        }
 
         filme.Id = id;
         _context.Filmes.Update(filme);
