@@ -15,6 +15,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
+using System.IO;
 
 namespace curso_pragmatico_csharp
 {
@@ -35,6 +37,9 @@ namespace curso_pragmatico_csharp
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "curso_pragmatico_csharp", Version = "v1" });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
             services.AddDbContext<ApplicationDbContext>(ParallelOptions => ParallelOptions.UseSqlite("Data Source=myapp.db"));
         }
