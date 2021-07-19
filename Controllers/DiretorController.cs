@@ -10,8 +10,12 @@ using System;
 public class DiretorController : ControllerBase {
     private readonly ApplicationDbContext _context;
 
-    public DiretorController(ApplicationDbContext context) {
+    private readonly IDiretorService _diretorService;
+
+    public DiretorController(ApplicationDbContext context,
+                                DiretorService diretorService) {
         _context = context;
+        _diretorService = diretorService;
     }
 
     /// <summary>
@@ -26,11 +30,7 @@ public class DiretorController : ControllerBase {
     // GET api/diretores
     [HttpGet]
     public async Task<ActionResult<List<DiretorOutputGetAllDTO>>> Get() {
-        var diretores = await _context.Diretores.ToListAsync();
-
-        if (!diretores.Any()) {
-            return NotFound("Não existe diretores cadastrados");
-        }
+        var diretores = await _diretorService.GetAll();
 
         var outputDtoList = new List<DiretorOutputGetAllDTO>();
 

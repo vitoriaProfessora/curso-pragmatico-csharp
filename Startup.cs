@@ -45,6 +45,7 @@ namespace curso_pragmatico_csharp
                 c.IncludeXmlComments(xmlPath);
             });
             services.AddDbContext<ApplicationDbContext>(ParallelOptions => ParallelOptions.UseSqlite("Data Source=myapp.db"));
+            services.AddScoped<IDiretorService, DiretorService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
