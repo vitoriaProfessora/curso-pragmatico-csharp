@@ -110,8 +110,8 @@ public class DiretorController : ControllerBase {
     /// Exclui um diretor
     /// </summary>
     /// <param name="diretorId">Id do diretor</param>
-    /// <returns>Diretor excluidoO diretor foi excluido com sucesso</returns>
-    /// <response code="200">O diretor foi excluido com sucesso</response>
+    /// <returns>Diretor excluído</returns>
+    /// <response code="200">O diretor foi excluído com sucesso</response>
     /// <response code="404">Não foi possível excluir o diretor com o Id informado</response>
     /// <response code="500">A solicitação não foi concluída devido a um erro interno no lado do servidor.</response>
 
