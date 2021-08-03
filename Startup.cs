@@ -15,7 +15,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
 
-namespace hello_2
+namespace curso_pragmatico_csharp
 {
     public class Startup
     {
