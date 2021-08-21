@@ -6,9 +6,10 @@ namespace MeuAppTestes
     public class UnitTest1
     {
         [Fact]
-        public void QuandoPassarDoisEDoisOResultadoTemQueSerQuatro()
+        public void CriaUmDiretor()
         {
-            // Assert.Equal(4, Add(2, 2));
+            var diretor = new Diretor("Nome Teste");
+            Assert.Equal("Nome Teste", diretor.Nome);
         }
     }
 }
