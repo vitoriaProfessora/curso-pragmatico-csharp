@@ -4,15 +4,17 @@ public class FilmeInputPutDTO {
     public long Id { get; set; }
     public string Titulo { get; set; }
     public long DiretorId { get; set; }
-    
-    public class FilmeInputPuttDTOValidator : AbstractValidator<FilmeInputPutDTO>
-    {
-        public FilmeInputPuttDTOValidator()
-        {
-            RuleFor(filme => filme.Id).NotNull().NotEmpty();
-            RuleFor(filme => filme.Titulo).NotNull().NotEmpty();
-            RuleFor(filme => filme.Titulo).Length(2, 250).WithMessage("Tamanho {TotalLength} inválido.");
-            RuleFor(filme => filme.DiretorId).NotNull().NotEmpty();
-        }
+    public FilmeInputPutDTO(long id, string titulo, long diretorId) {
+        Id = id;
+        Titulo = titulo;
+        DiretorId = diretorId;
     }
+}
+
+public class FilmeInputPutDTOValidator : AbstractValidator<FilmeInputPutDTO> {
+  public FilmeInputPutDTOValidator() {
+    RuleFor(x => x.Titulo)
+      .NotEmpty()
+      .WithMessage("O titulo do filme é obrigatorio");
+  }
 }
