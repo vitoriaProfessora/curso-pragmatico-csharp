@@ -102,9 +102,9 @@ public class FilmeController : ControllerBase {
     public async Task<ActionResult<FilmeOutputPutDTO>> Put(long id, [FromBody] FilmeInputPutDTO inputDTO) {
         var filme = new Filme(inputDTO.Titulo, inputDTO.DiretorId);
 
-        await _filmeService.Atualiza(filme, filme.Id);
+        var filmeModificado = await _filmeService.Atualiza(filme, id);
 
-        var outputDTO = new FilmeOutputPutDTO(filme.Id, filme.Titulo);
+        var outputDTO = new FilmeOutputPutDTO(filmeModificado.Id, filmeModificado.Titulo);
         return Ok(outputDTO);
     }
 
